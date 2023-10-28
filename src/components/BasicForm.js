@@ -33,19 +33,15 @@ const BasicForm = (props) => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    if (!firstNameIsValid) {
-      return;
-    }
-    if (!lastNameIsValid) {
-      return;
-    }
-    if (!emailIsValid) {
+    if (!formIsValid) {
       return;
     }
 
     resetFirstName();
     resetLastName();
     resetEmail();
+    console.log('Sumbitted!')
+    console.log(firstName, lastName, email)
   };
 
   const firstNameClasses = firstNameIsInvalid
@@ -69,7 +65,7 @@ const BasicForm = (props) => {
             onBlur={firstNameBlurHandler}
             value={firstName}
           />
-          {firstNameIsInvalid && <p>Name input must not be empty</p>}
+          {firstNameIsInvalid && <p className={'error-text'}>Name input must not be empty</p>}
         </div>
         <div className={lastNameClasses}>
           <label htmlFor="name">Last Name</label>
@@ -80,7 +76,7 @@ const BasicForm = (props) => {
             onBlur={lastNameBlurHandler}
             value={lastName}
           />
-          {lastNameIsInvalid && <p>Last name input must not be empty</p>}
+          {lastNameIsInvalid && <p className={'error-text'}>Last name input must not be empty</p>}
         </div>
       </div>
       <div className={emailClasses}>
@@ -92,7 +88,7 @@ const BasicForm = (props) => {
           onBlur={emailBlurHandler}
           value={email}
         />
-        {emailIsInvalid && <p>Email must not be empty</p>}
+        {emailIsInvalid && <p className={'error-text'}>Email must not be empty</p>}
       </div>
       <div className="form-actions">
         <button disabled={!formIsValid}>Submit</button>
